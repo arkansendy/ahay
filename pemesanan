@@ -1,0 +1,111 @@
+import os 
+import time
+os.system('CLS')
+
+# nyimpen list panganan e
+foods = []
+
+# nggo ngeadd 
+def add_food(name, price):
+    foods.append({
+        'name': name,
+        'price': price
+    })
+
+# nggo hapus menu
+def remove_food(index):
+    del foods[index]
+
+# list panganan
+def show_foods():
+    os.system('CLS')
+    print('List Daftar Makanan:')
+    for i, food in enumerate(foods):
+        print(f'{i+1}. {food["name"]} - Rp. {food["price"]}')
+
+# pembayaran 
+def pay(total):
+    print(f'Total Harga: Rp. {total}')
+    payment = int(input('Jumlah uang yang dibayarkan: '))
+    if payment < total:
+        print('Uang yang dibayarkan kurang')
+    else:
+        change = payment - total
+        print(f'Kembalian: Rp. {change}')
+
+# nggo notice list
+def noitce():
+    os.system('CLS')
+    print('List Menu akan tertutup dalam 10 detik secara otomatis')
+    time.sleep(3)
+    os.system('CLS')
+
+while True:
+
+    print('(◔)==============================================(◔)')
+    print('♛  Pemesanan Makanan WazzWuzz Waroenk by 𝙨𝙞𝙆𝙖𝙣𝙣𝙕 ♛')
+    print('========================(◔)========================')
+    print('Daftar menu :')
+    print('1. Tambah makanan')
+    print('2. Hapus makanan')
+    print('3. Tampilkan daftar makanan')
+    print('4. Bayar')
+    print('5. Keluar')
+    print('===================================================')
+    choice = input('Masukkan pilihan: ')
+
+    if choice == '1':
+        name = input('Masukkan nama makanan: ')
+        price = int(input('Masukkan harga makanan: '))
+        add_food(name, price)
+        os.system('CLS')
+        print('Tunggu 3 detik menu akan segera di tambahkan...')
+        time.sleep(1)
+        os.system('CLS')
+        print('Tunggu 2 detik menu akan segera di tambahkan.')
+        time.sleep(1)
+        os.system('CLS')
+        print('Tunggu 1 detik menu akan segera di tambahkan.')
+        time.sleep(1)
+        os.system('CLS')
+        print(f'{name} berhasil ditambahkan')
+        time.sleep(3)
+        os.system('CLS')
+    elif choice == '2':
+        show_foods()
+        index = int(input('Silahkan ketik nomor makanan yang ingin di hapus: ')) - 1
+        remove_food(index)
+        os.system('CLS')
+        print('Tunggu Sebentar permintaan anda sedang di proses...')
+        time.sleep(3)
+        os.system('CLS')
+        print('Menu makanan telah berhasil dihapus')
+        time.sleep(3)
+        os.system('CLS')
+    elif choice == '3':
+        noitce()
+        show_foods()
+        time.sleep(10)
+        os.system('CLS')
+    elif choice == '4':
+        total = 0
+        show_foods()
+        for food in foods:
+            total += food['price']
+        pay(total)
+        time.sleep(4)
+        os.system('CLS')
+        print('Terimakasih sudah membayar dan terhindar dari hutang hihi ♥ ')
+        time.sleep(4)
+        os.system('CLS')
+    elif choice == '5':
+        os.system('CLS')
+        print('Terima kasih sudah menggunakan sistem pemesanan dari SiKannnZ ♛ ')
+        time.sleep(5)
+        os.system('CLS')
+        break
+    else:
+        os.system('CLS')
+        print('Pilihan mu ora ono koyo dek e seng ngelio :) ')
+        time.sleep(3)
+        os.system('CLS')
