@@ -1,0 +1,231 @@
+import os 
+import time
+os.system('CLS')
+print('Sek dilit Program Akan Segera Terbuka...')
+time.sleep(1)
+os.system('CLS')
+print('Sek dilit Program Akan Segera Terbuka..')
+time.sleep(1)
+os.system('CLS')
+print('Sek dilit Program Akan Segera Terbuka.')
+time.sleep(1)
+time.sleep(3)
+os.system('CLS')
+
+def noitce_down():
+        os.system('CLS')
+        print('List akan tertutup dalam 10 detik secara otomatis !')
+        time.sleep(3)
+        os.system('CLS')
+
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Node:
+    def __init__(self, product=None, next=None):
+        self.product = product
+        self.next = next
+
+class ProductList:
+    def __init__(self):
+        self.head = None
+
+    def add_product(self, product):
+        new_node = Node(product)
+
+        if self.head is None:
+            self.head = new_node
+            return
+
+        current_node = self.head
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = new_node
+
+    def remove_product(self, product):
+        current_node = self.head
+        prev_node = None
+
+        while current_node is not None:
+            if current_node.product.name == product.name:
+                if prev_node is None:
+                    self.head = current_node.next
+                else:
+                    prev_node.next = current_node.next
+                return
+
+            prev_node = current_node
+            current_node = current_node.next
+
+    def insert_product(self, product, index):
+        new_node = Node(product)
+
+        if index == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return
+
+        current_node = self.head
+        for i in range(index-1):
+            current_node = current_node.next
+            if current_node is None:
+                return
+
+        new_node.next = current_node.next
+        current_node.next = new_node
+
+    def count_products(self):
+        current_node = self.head
+        count = 0
+
+        while current_node is not None:
+            count += 1
+            current_node = current_node.next
+
+        return count
+
+    def is_empty(self):
+        return self.head is None
+
+    def print_list(self):
+        current_node = self.head
+        while current_node is not None:
+            print(f"{current_node.product.name} ({current_node.product.price})")
+            current_node = current_node.next
+
+def main():
+    product_list = ProductList()
+
+    while True:
+        print('(◔)==============================================(◔)')
+        print('           ♛ Tools Serbaguna by 𝙨𝙞𝙆𝙖𝙣𝙣𝙕 ♛          ')
+        print('========================(◔)========================')
+        print("Daftar Menu Tools:")
+        print("1. Tambah Produk")
+        print("2. Hapus Poroduk")
+        print("3. Menambahkan Ulang Produk")
+        print("4. Mencetak List Produk")
+        print("5. Jumlah Produk Yang Tersedia")
+        print("6. Mengecek List Produk Kosong/Tidak")
+        print("7. Keluar Program")
+        print('')
+        while True:
+            try :
+                choice = int(input("Silahkan Masukan Nomor Menu : "))
+                break
+            except ValueError:
+                print("Harap Memasukan Angka Saja, Bukan Huruf !")
+            time.sleep(3)
+          
+        if choice == 1:
+            name = input("Masukan Nama Porduk: ")
+            price = float(input("Masukan Harga Produk: "))
+            new_product = Product(name, price)
+            product_list.add_product(new_product)
+            os.system('CLS')
+            print('Tunggu 3 detik produk akan segera di tambahkan...')
+            time.sleep(1)
+            os.system('CLS')
+            print('Tunggu 2 detik produk akan segera di tambahkan..')
+            time.sleep(1)
+            os.system('CLS')
+            print('Tunggu 1 detik produk akan segera di tambahkan.')
+            time.sleep(1)
+            os.system('CLS')
+            print(f'{name} berhasil ditambahkan ! ')
+            time.sleep(2)
+            os.system('CLS')
+        elif choice == 2:
+            os.system('CLS')
+            print('Produk Yang Tersedia : ')
+            product_list.print_list()
+            name = input("Masukan Nama Porduk: ")
+            product = Product(name, 0)
+            product_list.remove_product(product)
+            if name.isalpha():
+                time.sleep(5)
+                os.system('CLS')
+                print('Tunggu 3 detik produk akan segera di hapus...')
+                time.sleep(1)
+                os.system('CLS')
+                print('Tunggu 2 detik produk akan segera di hapus..')
+                time.sleep(1)
+                os.system('CLS')
+                print('Tunggu 1 detik produk akan segera di hapus.')
+                time.sleep(1)
+                os.system('CLS')
+                print(f'{name} berhasil hapus ! ')
+                time.sleep(2)
+                os.system('CLS')
+            else:
+                print("Inputan anda adalah ankga , silahkan masukan huruf saja !")
+            time.sleep(5)
+            os.system('CLS')
+            main()
+           
+        elif choice == 3:
+            name = input("Masukan Nama Porduk: ")
+            price = float(input("Masukan Harga Produk: "))
+            product = Product(name, price)
+            index = int(input("Masukan Index Untuk Menambahkan Produk: "))
+            product_list.insert_product(product, index)
+            if name.isalpha():
+                time.sleep(5)
+                os.system('CLS')
+                print('Tunggu 3 detik produk akan segera di tambahkan ulang...')
+                time.sleep(1)
+                os.system('CLS')
+                print('Tunggu 2 detik produk akan segera di tambahkan ulang..')
+                time.sleep(1)
+                os.system('CLS')
+                print('Tunggu 1 detik produk akan segera di tambahkan ulang.')
+                time.sleep(1)
+                os.system('CLS')
+                print(f'{name} berhasil ditambahkan ulang ! ')
+                time.sleep(2)
+                os.system('CLS')
+            else:
+                print("Inputan anda adalah ankga , silahkan masukan huruf saja !")
+            time.sleep(5)
+            os.system('CLS')
+            main()
+        elif choice == 4:
+            noitce_down()
+            print("List Semua Produk :")
+            product_list.print_list()
+            time.sleep(10)
+            os.system('CLS')
+        elif choice == 5:
+            noitce_down()
+            count = product_list.count_products()
+            print(f"Tersedia {count} Produk")
+            time.sleep(10)
+            os.system('CLS')
+        elif choice == 6:
+            if product_list.is_empty():
+                os.system('CLS')
+                print("Tidak Ditemukan List Produk")
+                time.sleep(5)
+                os.system('CLS')
+            else:
+                os.system('CLS')
+                print("Ditemukan List Produk")
+                time.sleep(10)
+                os.system('CLS')
+        elif choice == 7:
+            os.system('CLS')
+            print('Thanks For Using Serbaguna Tools By 𝙨𝙞𝙆𝙖𝙣𝙣𝙕 ♛ ')
+            time.sleep(3)
+            os.system('CLS')
+            break
+        else:
+            os.system('CLS')
+            print('Pilihan mu ora ono koyo dek e seng ngelio :) ')
+            time.sleep(3)
+            os.system('CLS')
+
+if __name__ == '__main__':
+    main()
